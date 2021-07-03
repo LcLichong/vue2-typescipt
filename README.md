@@ -1,4 +1,4 @@
-# vue2.x版本配合typescrit
+# vue2.x版本配合typescript
 
 ## Project setup
 ```
