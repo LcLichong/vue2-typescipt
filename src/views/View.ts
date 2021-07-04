@@ -1,11 +1,5 @@
-<template>
-    <div id="home">
-        <Footer :FooterList="FooterList" @menuClick="menuClick"></Footer>
-    </div>
-</template>
-
-<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { CreateElement, VNode } from "vue/types/umd";
 import Footer from "../components/Footer/index";
 import { FooterList } from "../type/footer-type";
 import { Url } from "../type/home-type";
@@ -15,15 +9,15 @@ import { Url } from "../type/home-type";
         Footer,
     },
 })
-export default class Home extends Vue {
+export default class ViewB extends Vue {
     FooterList: Array<FooterList> = [
         {
             idx: 1,
             name: "底部导航一",
             menuList: [
                 {
-                    name: "View",
-                    url: "/View",
+                    name: "Home",
+                    url: "/",
                     idx: "menu1",
                 },
                 {
@@ -78,11 +72,25 @@ export default class Home extends Vue {
             alert("链接格式不正确");
         }
     }
-}
-</script>
 
-<style lang="less">
-#home {
-    height: 100vh;
+    render(h: CreateElement): VNode {
+        return h(
+            "div",
+            {
+                attrs: {
+                    id: "ViewB",
+                },
+            },
+            [
+                h("Footer", {
+                    attrs: {
+                        FooterList: this.FooterList,
+                    },
+                    on: {
+                        menuClick: this.menuClick,
+                    },
+                }),
+            ]
+        );
+    }
 }
-</style>
